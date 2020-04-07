@@ -1,17 +1,29 @@
 <?xml version="1.0" ?>
 <robot name="quad_f450_camera" xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- base_link -->
-  <link name="base_link"/>
+  <link
+    name="base_link">
     <inertial>
-      <mass value="1.65"/>
-      <!-- [kg] -->
-      <origin xyz="0.0001429 -0.00085582 0.01685"/>
-      <inertia ixx="0.014959" ixy="0.0" ixz="0.0" iyy="0.022005" iyz="0.0" izz="0.028033"/>
+      <origin
+        xyz="0.0001429 -0.00085582 0.01685"
+        rpy="0 0 0" />
+      <mass
+        value="1.65" />
+      <inertia
+        ixx="0.014959"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.022005"
+        iyz="0.0"
+        izz="0.028033" />
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://quad_f450_camera/meshes/base_link.STL" scale="1 1 1"/>
+        <mesh
+          filename="package://mavros_off_board/meshes/quad_f450/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -20,10 +32,11 @@
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 -0.0385"/>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
         <box size="0.3585 0.3585 0.22"/>
-        <!-- [m] [m] [m] -->
       </geometry>
     </collision>
   </link>
@@ -34,52 +47,87 @@
   </gazebo>
 
   <!-- IMU link -->
-  <link name="imu_link"/>
+  <link
+    name="/imu_link">
     <inertial>
-      <mass value="0.015"/>
-      <!-- [kg] -->
-      <origin xyz="0.0 0.0 0.0"/>
-      <inertia ixx="1E-05" ixy="0.0" ixz="0.0" iyy="1E-05" iyz="0.0" izz="1E-05"/>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="0.015" />
+      <inertia
+        ixx="1E-05"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="1E-05"
+        iyz="0.0"
+        izz="1E-05" />
     </inertial>
   </link>
 
   <!-- gazebo reference of the IMU -->
-  <gazebo reference="imu_link">
+  <gazebo reference="/imu_link">
     <material>Gazebo/DarkGrey</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
   <!-- IMU joint -->
-  <joint name="/imu_joint" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <axis xyz="1 0 0"/>
-    <parent link="base_link"/>
-    <child link="/imu_link"/>
-    <limit effort="0" lower="0" upper="0" velocity="0"/>
+  <joint
+    name="/imu_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="/imu_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
   </joint>
 
   <!-- Instantiate link rotor 0 -->
-  <link name="rotor_0">
+  <link
+    name="rotor_0">
     <inertial>
-      <origin xyz="3.9364E-07 4.9255E-07 -0.00082037" rpy="0 0 0" />
-      <mass value="0.01"/>
-      <!-- [kg] --> 
-      <inertia ixx="8.4464e-07" ixy="-7.2191e-07" ixz="5.3515e-13" iyy="6.4014e-07" iyz="5.5137e-13" izz="1.4805e-06"/>
+      <origin
+        xyz="3.9364E-07 4.9255E-07 -0.00082037"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="8.4464E-07"
+        ixy="-7.2191E-07"
+        ixz="5.3515E-13"
+        iyy="6.4014E-07"
+        iyz="5.5137E-13"
+        izz="1.4805E-06" />
     </inertial>
     <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://quad_f450_camera/meshes/propeller_0.STL" scale="1 1 1"/>
+        <mesh
+          filename="package://mavros_off_board/meshes/quad_f450/propeller_0.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.1098 0.1098 0.1098 1" />
+          rgba="0.75294 0.75294 0.75294 1" />
       </material>
     </visual>
     <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
         <cylinder length="0.005" radius="0.065"/>
-        <!-- [m] -->
       </geometry>
     </collision>
   </link>
@@ -91,36 +139,62 @@
   </gazebo>
 
   <!-- Instantiate joint rotor 0 -->
-  <joint name="rotor_0_joint" type="revolute">
-    <origin rpy="0.15891 0.15872 0.062676" xyz="0 0 0.7854"/>
-    <axis xyz="0 0 -1"/>
-    <parent link="base_link"/>
-    <child link="rotor_0"/>
-    <limit lower="-1e+16" upper="1e+16"/>
+  <joint
+    name="rotor_0_joint"
+    type="revolute">
+    <origin
+      xyz="0.15891 0.15872 0.062676"
+      rpy="0 0 0.7854" />
+    <parent
+      link="base_link" />
+    <child
+      link="rotor_0" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
   </joint>
 
   <!-- Instantiate link rotor 1 -->
-  <link name="rotor_1">
+  <link
+    name="rotor_1">
     <inertial>
-      <origin xyz="-4.0868E-07 4.4208E-07 -0.00082036" rpy="0 0 0" />
-      <mass value="0.01"/>
-      <!-- [kg] --> 
-      <inertia ixx="8.5496e-07" ixy="7.1953e-07" ixz="-4.1012e-13" iyy="6.2836e-07" iyz="5.491e-13" izz="1.479e-06"/>
+      <origin
+        xyz="-4.0868E-07 4.4208E-07 -0.00082036"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="8.5496E-07"
+        ixy="7.1953E-07"
+        ixz="-4.1012E-13"
+        iyy="6.2836E-07"
+        iyz="5.491E-13"
+        izz="1.479E-06" />
     </inertial>
     <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://quad_f450_camera/meshes/propeller_1.STL" scale="1 1 1"/>
+        <mesh
+          filename="package://mavros_off_board/meshes/quad_f450/propeller_1.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.1098 0.1098 0.1098 1" />
+          rgba="0.75294 0.75294 0.75294 1" />
       </material>
     </visual>
     <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
         <cylinder length="0.005" radius="0.065"/>
-        <!-- [m] -->
       </geometry>
     </collision>
   </link>
@@ -132,36 +206,62 @@
   </gazebo>
 
   <!-- Instantiate joint rotor 1 -->
-  <joint name="rotor_1_joint" type="revolute">
-    <origin rpy="0.1589 -0.15909 0.062676" xyz="0 0 -0.7854"/>
-    <axis xyz="0 0 -1"/>
-    <parent link="base_link"/>
-    <child link="rotor_1"/>
-    <limit lower="-1e+16" upper="1e+16"/>
+  <joint
+    name="rotor_1_joint"
+    type="revolute">
+    <origin
+      xyz="0.1589 -0.15909 0.062676"
+      rpy="0 0 -0.7854" />
+    <parent
+      link="base_link" />
+    <child
+      link="rotor_1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
   </joint>
 
   <!-- Instantiate link rotor 2 -->
-  <link name="rotor_2">
+  <link
+    name="rotor_2">
     <inertial>
-      <origin xyz="3.8516E-07 4.6306E-07 -0.00082037" rpy="0 0 0" />
-      <mass value="0.01"/>
-      <!-- [kg] --> 
-      <inertia ixx="8.4464e-07" ixy="-7.2191e-07" ixz="4.5077e-13" iyy="6.4014e-07" iyz="4.5674e-13" izz="1.4805e-06"/>
+      <origin
+        xyz="3.8516E-07 4.6306E-07 -0.00082037"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="3.8516E-07"
+        ixy="-7.2191E-07"
+        ixz="4.5077E-13"
+        iyy="6.4014E-07"
+        iyz="4.5674E-13"
+        izz="1.4805E-06" />
     </inertial>
     <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://quad_f450_camera/meshes/propeller_0.STL" scale="1 1 1"/>
+        <mesh
+          filename="package://mavros_off_board/meshes/quad_f450/propeller_0.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.1098 0.1098 0.1098 1" />
+          rgba="0.75294 0.75294 0.75294 1" />
       </material>
     </visual>
     <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
         <cylinder length="0.005" radius="0.065"/>
-        <!-- [m] -->
       </geometry>
     </collision>
   </link>
@@ -173,36 +273,62 @@
   </gazebo>
 
   <!-- Instantiate joint rotor 2 -->
-  <joint name="rotor_2_joint" type="revolute">
-    <origin rpy="-0.15891 -0.15908 0.062676" xyz="0 0 0.7854"/>
-    <axis xyz="0 0 -1"/>
-    <parent link="base_link"/>
-    <child link="rotor_2"/>
-    <limit lower="-1e+16" upper="1e+16"/>
+  <joint
+    name="rotor_2_joint"
+    type="revolute">
+    <origin
+      xyz="-0.15891 -0.15908 0.062676"
+      rpy="0 0 0.7854" />
+    <parent
+      link="base_link" />
+    <child
+      link="rotor_2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
   </joint>
 
   <!-- Instantiate link rotor 3 -->
-  <link name="rotor_3">
+  <link
+    name="rotor_3">
     <inertial>
-      <origin xyz="-4.1378E-07 4.3157E-07 -0.00082036" rpy="0 0 0" />
-      <mass value="0.01"/>
-      <!-- [kg] --> 
-      <inertia ixx="8.5496e-07" ixy="7.1953e-07" ixz="-4.184e-13" iyy="6.2836e-07" iyz="5.3609e-13" izz="1.479e-06"/>
+      <origin
+        xyz="-4.1378E-07 4.3157E-07 -0.00082036"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="8.5496E-07"
+        ixy="7.1953E-07"
+        ixz="-4.184E-13"
+        iyy="6.2836E-07"
+        iyz="5.3609E-13"
+        izz="1.479E-06" />
     </inertial>
     <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://quad_f450_camera/meshes/propeller_1.STL" scale="1 1 1"/>
+        <mesh
+          filename="package://mavros_off_board/meshes/quad_f450/propeller_1.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.1098 0.1098 0.1098 1" />
+          rgba="0.75294 0.75294 0.75294 1" />
       </material>
     </visual>
     <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
         <cylinder length="0.005" radius="0.065"/>
-        <!-- [m] -->
       </geometry>
     </collision>
   </link>
@@ -214,36 +340,62 @@
   </gazebo>
 
   <!-- Instantiate joint rotor 3 -->
-  <joint name="rotor_3_joint" type="revolute">
-    <origin rpy="-0.1589 0.15873 0.062676" xyz="0 0 -0.7854"/>
-    <axis xyz="0 0 -1"/>
-    <parent link="base_link"/>
-    <child link="rotor_3"/>
-    <limit lower="-1e+16" upper="1e+16"/>
+  <joint
+    name="rotor_3_joint"
+    type="revolute">
+    <origin
+      xyz="-0.1589 0.15873 0.062676"
+      rpy="0 0 -0.7854" />
+    <parent
+      link="base_link" />
+    <child
+      link="rotor_3" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
   </joint>
 
   <!-- Instantiate camera link -->
-  <link name="camera_link">
+  <link
+    name="camera_link">
     <inertial>
-      <origin xyz="-0.0013668 -1.5197E-05 0.00025326" rpy="0 0 0" />
-      <mass value="0.050075"/>
-      <!-- [kg] --> 
-      <inertia ixx="3.2061e-05" ixy="-1.169e-08" ixz="-4.2601e-10" iyy="3.0815e-05" iyz="5.2182e-10" izz="5.1652e-06"/>
+      <origin
+        xyz="-0.0013668 -1.5197E-05 0.00025326"
+        rpy="0 0 0" />
+      <mass
+        value="0.050075" />
+      <inertia
+        ixx="3.2061E-05"
+        ixy="-1.169E-08"
+        ixz="-4.2601E-10"
+        iyy="3.0815E-05"
+        iyz="5.2182E-10"
+        izz="5.1652E-06" />
     </inertial>
     <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://quad_f450_camera/meshes/cam_link.STL" scale="1 1 1"/>
+        <mesh
+          filename="package://mavros_off_board/meshes/quad_f450/cam_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.1098 0.1098 0.1098 1" />
+          rgba="0.75294 0.75294 0.75294 1" />
       </material>
     </visual>
     <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
       <geometry>
         <box size="0.023813 0.027686 0.092682"/>
-        <!-- [m] -->
       </geometry>
     </collision>
   </link>
@@ -255,7 +407,8 @@
       <visualize>true</visualize>
       <always_on>1</always_on>
       <camera name="head">
-        <horizontal_fov>2.0</horizontal_fov>
+	<pose>0 0 0 1.5708 0 0</pose>
+        <horizontal_fov>2.2</horizontal_fov>
         <image>
           <width>640</width>
           <height>480</height>
@@ -273,7 +426,7 @@
       </camera>
 
       <plugin filename="libgazebo_ros_camera.so" name="camera_en_ros">
-        <robotNamespace></robotNamespace>
+        <robotNamespace>quad_f450_camera</robotNamespace>
         <alwaysOn>true</alwaysOn>
         <updateRate>30.0</updateRate>
         <cameraName>camera_link</cameraName>
@@ -315,11 +468,18 @@
   </gazebo>
 
   <!-- Instantiate joint of the camera -->
-  <joint name="camera_joint" type="fixed">
-    <origin rpy="0 0 -0.013633" xyz="1.5708 1.5708 0"/>
-    <axis xyz="-1 0 0"/>
-    <parent link="base_link"/>
-    <child link="camera_link"/>
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 -0.013633"
+      rpy="1.5708 1.5708 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_link" />
+    <axis
+      xyz="-1 0 0" />
   </joint>
 
   <!-- Motor 2 Plugin-->

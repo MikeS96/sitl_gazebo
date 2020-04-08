@@ -366,7 +366,7 @@
 
     <!-- cam link-->
     <link name="camera_link">
-    <pose>0 0 -0.013633 0 1.5708 1.5708 0</pose>
+    <pose>0 0 -0.013633 1.5708 1.5708 0</pose>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
         <mass>0.050075</mass>

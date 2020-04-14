@@ -36,14 +36,14 @@
     </gazebo>
   </xacro:macro>
 
-  <!-- Macro to add a camera. -->
-  <xacro:macro name="camera_macro"
+  <!-- Macro to add a thermal camera. -->
+  <xacro:macro name="thermal_camera_macro"
     params="namespace parent_link camera_suffix frame_rate
       horizontal_fov image_width image_height image_format min_distance
       max_distance noise_mean noise_stddev enable_visual *cylinder *origin">
     <link name="${namespace}/camera_${camera_suffix}_link">
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="1.57 0 0" />
         <geometry>
           <box size="0.023813 0.027686 0.092682"/>
         </geometry>
@@ -59,8 +59,8 @@
       </xacro:if>
       <inertial>
         <mass value="0.050075" />
-        <origin xyz="-0.0013668 -1.5197e-5 0.00025326" rpy="0 0 0" />
-        <inertia ixx="3.2061e-05" ixy="-1.169e-08" ixz="-4.2601e-10" iyy="3.0815e-05" iyz="5.2182e-10" izz="5.1652e-06" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <inertia ixx="3.2061e-05" ixy="4.2601e-10" ixz="-1.169e-08" iyy="5.1652e-06" iyz="-5.2183e-10" izz="3.0815e-05" />
       </inertial>
     </link>
     <joint name="${namespace}/camera_${camera_suffix}_joint" type="fixed">
@@ -74,7 +74,7 @@
         <visualize>true</visualize>
         <always_on>1</always_on>
         <camera name="head">
-          <pose>0 0 0 -1.5708 0 0</pose>
+          <pose>0 0 0 0 0 0</pose>
           <horizontal_fov>${horizontal_fov}</horizontal_fov>
           <image>
             <width>${image_width}</width>
@@ -110,7 +110,99 @@
           <distortionT2>0.0</distortionT2>
         </plugin>
       </sensor>
-      <material>Gazebo/DarkGrey</material>
+      <material>Gazebo/White</material>
+    </gazebo>
+  </xacro:macro>
+
+  <!-- Macro to add a monocular camera. -->
+  <xacro:macro name="monocular_camera_macro"
+    params="namespace parent_link camera_suffix frame_rate
+      horizontal_fov image_width image_height image_format min_distance
+      max_distance noise_mean noise_stddev enable_visual *cylinder *origin">
+    <link name="${namespace}/camera_${camera_suffix}_link">
+      <collision>
+        <origin xyz="0 0 0" rpy="1.57 0 0" />
+        <geometry>
+          <box size="0.023813 0.027686 0.092682"/>
+        </geometry>
+      </collision>
+      <xacro:if value="${enable_visual}">
+        <visual>
+          <origin xyz="0 0 0" rpy="1.57 0 0" />
+          <geometry>
+            <mesh filename="package://quad_f450_camera/meshes/cam_link.STL" />
+          </geometry>
+          <material name="red" />
+        </visual>
+      </xacro:if>
+      <inertial>
+        <mass value="0.050075" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <inertia ixx="3.2061e-05" ixy="4.2601e-10" ixz="-1.169e-08" iyy="5.1652e-06" iyz="-5.2181e-10" izz="3.0815e-05" />
+      </inertial>
+    </link>
+    <joint name="${namespace}/camera_${camera_suffix}_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent_link}" />
+      <child link="${namespace}/camera_${camera_suffix}_link" />
+    </joint>
+    <gazebo reference="${namespace}/camera_${camera_suffix}_link">
+      <sensor type="camera" name="${namespace}_camera_${camera_suffix}">
+        <update_rate>${frame_rate}</update_rate>
+        <visualize>true</visualize>
+        <always_on>1</always_on>
+        <camera name="head">
+          <pose>0 0 0 0 0 0</pose>
+          <horizontal_fov>${horizontal_fov}</horizontal_fov>
+          <image>
+            <width>${image_width}</width>
+            <height>${image_height}</height>
+            <format>${image_format}</format>
+          </image>
+          <clip>
+            <near>${min_distance}</near>
+            <far>${max_distance}</far>
+          </clip>
+          <noise>
+            <type>gaussian</type>
+            <!-- Noise is sampled independently per pixel on each frame.
+                 That pixel's noise value is added to each of its color
+                 channels, which at that point lie in the range [0,1]. -->
+            <mean>${noise_mean}</mean>
+            <stddev>${noise_stddev}</stddev>
+          </noise>
+        </camera>
+        <plugin name="${namespace}_camera_${camera_suffix}_controller" filename="libgazebo_ros_camera.so">
+          <robotNamespace>${namespace}</robotNamespace>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>${frame_rate}</updateRate>
+          <cameraName>camera_${camera_suffix}</cameraName>
+          <imageTopicName>image_raw</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>camera_${camera_suffix}_link</frameName>
+          <hackBaseline>0.0</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+
+        <plugin name="GstCameraPlugin" filename="libgazebo_gst_camera_plugin.so">
+            <robotNamespace></robotNamespace>
+            <udpPort>5600</udpPort>
+        </plugin>
+
+        <plugin name="GeotaggedImagesPlugin" filename="libgazebo_geotagged_images_plugin.so">
+            <robotNamespace>quad_f450_thermal</robotNamespace>
+            <interval>1</interval>
+            <width>3840</width>
+            <height>2160</height>
+            <maximum_zoom>8.0</maximum_zoom>
+        </plugin> 
+
+      </sensor>
+      <material>Gazebo/White</material>
     </gazebo>
   </xacro:macro>
 

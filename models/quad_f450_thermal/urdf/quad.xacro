@@ -7,7 +7,7 @@
   <xacro:property name="mesh_file" value="base_link.STL" />
   <xacro:property name="mesh_scale" value="1 1 1"/>
   <xacro:property name="mesh_scale_prop" value="1 1 1"/>
-  <xacro:property name="mass" value="1.65" /> <!-- [kg] -->
+  <xacro:property name="mass" value="1.70" /> <!-- [kg] -->
   <xacro:property name="body_width" value="0.3585" /> <!-- [m] -->
   <xacro:property name="body_height" value="0.22" /> <!-- [m] -->
   <xacro:property name="mass_rotor" value="0.01" /> <!-- [kg] -->

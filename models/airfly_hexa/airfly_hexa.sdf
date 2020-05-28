@@ -4,8 +4,8 @@
     <link name='base_link'>
       <pose>0 0 0 0 0 0</pose> <!-- This pose is the visual offset of the vehicle + the reference frame -->
       <inertial>
-        <pose>0.00248395293577031 0.000136495293976524 -0.174981555965809 0 0 0</pose> <!-- This pose is the center of mass of the vehicle-->
-        <mass>155.931459830594</mass>
+        <pose>0.00248395293577031 0.000136495293976524 -0.174981555965809 0 0 0</pose> <!-- This pose is the center of mass of the vehicle 155.931459830594-->
+        <mass>140</mass>
         <inertia>
           <ixx>2.93015030357653</ixx>
           <ixy>2.67282084525685e-05</ixy>
@@ -16,22 +16,28 @@
         </inertia>
       </inertial>
       <collision name='base_link_collision'>
-        <pose>0 0 -0.175 0 0 0</pose> <!-- The z Axis has an offset to create a centered box for collisions-->
+        <pose>0 0 -0.175 0 0 0</pose> <!-- The z Axis has an offset to create a centered box for collisions https://answers.gazebosim.org//question/17457/robot-slips-after-upgrade-to-kinetic/ -->
         <geometry>
           <box>
             <size>1.944514 2.231896 0.886246</size> 
           </box>
         </geometry>
         <surface>
+          <friction>
+            <ode>
+              <mu>100000.0</mu>
+              <mu2>100000.0</mu2>
+              <fdir1>1 0 0</fdir1>
+              <slip1>0.0</slip1>
+              <slip2>0.0</slip2>
+            </ode>
+          </friction>
           <contact>
             <ode>
-              <min_depth>0.001</min_depth>
-              <max_vel>0</max_vel>
+              <min_depth>0.01</min_depth>
+              <max_vel>1</max_vel>
             </ode>
           </contact>
-          <friction>
-            <ode/>
-          </friction>
         </surface>
       </collision>
       <visual name='base_link_visual'>
@@ -153,7 +159,7 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-        <use_parent_model_frame>1</use_parent_model_frame>
+        <use_parent_model_frame>0</use_parent_model_frame>
       </axis>
     </joint>
 
@@ -222,7 +228,7 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-        <use_parent_model_frame>1</use_parent_model_frame>
+        <use_parent_model_frame>0</use_parent_model_frame>
       </axis>
     </joint>
 
@@ -291,7 +297,7 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-        <use_parent_model_frame>1</use_parent_model_frame>
+        <use_parent_model_frame>0</use_parent_model_frame>
       </axis>
     </joint>
 
@@ -360,14 +366,14 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-        <use_parent_model_frame>1</use_parent_model_frame>
+        <use_parent_model_frame>0</use_parent_model_frame>
       </axis>
     </joint>
 
     <!-- Rotor 5-->
     <link name='rotor_4'>
     <pose>-0.78182 0.54846 0.25157 -0.24255 0.13775 -0.01577</pose>
-      <inertial>
+      <inertial> 
         <pose>-5.7509e-05 -0.0012881 7.3721e-05 0 0 0</pose>
         <mass>0.4177</mass>
         <inertia>
@@ -429,13 +435,13 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-        <use_parent_model_frame>1</use_parent_model_frame>
+        <use_parent_model_frame>0</use_parent_model_frame>
       </axis>
     </joint>
 
     <!-- Rotor 6-->
     <link name='rotor_5'>
-    <pose>-0.052635 0.95115 0.25919 -2.5657E-05 -0.1671 0.0013258</pose>
+    <pose>-0.052635 0.95115 0.25919 -2.5657e-05 -0.1671 0.0013258</pose>
       <inertial>
         <pose>-5.7509e-05 -0.0012881 7.3721e-05 0 0 0</pose>
         <mass>0.4177</mass>
@@ -498,7 +504,7 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-        <use_parent_model_frame>1</use_parent_model_frame>
+        <use_parent_model_frame>0</use_parent_model_frame>
       </axis>
     </joint>
 

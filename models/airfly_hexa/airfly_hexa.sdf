@@ -5,7 +5,7 @@
       <pose>0 0 0 0 0 0</pose> <!-- This pose is the visual offset of the vehicle + the reference frame -->
       <inertial>
         <pose>0.00248395293577031 0.000136495293976524 -0.174981555965809 0 0 0</pose> <!-- This pose is the center of mass of the vehicle 155.931459830594-->
-        <mass>140</mass>
+        <mass>95</mass>
         <inertia>
           <ixx>2.93015030357653</ixx>
           <ixy>2.67282084525685e-05</ixy>

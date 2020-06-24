@@ -150,7 +150,7 @@
       <parent>base_link</parent>
       <pose>0 0 0 0 0 0</pose>
       <axis>
-        <xyz>0 0 -1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -159,7 +159,7 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-        <use_parent_model_frame>0</use_parent_model_frame>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
 
@@ -219,7 +219,7 @@
       <parent>base_link</parent>
       <pose>0 0 0 0 0 0</pose>
       <axis>
-        <xyz>0 0 -1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -228,7 +228,7 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-        <use_parent_model_frame>0</use_parent_model_frame>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
 
@@ -288,7 +288,7 @@
       <parent>base_link</parent>
       <pose>0 0 0 0 0 0</pose>
       <axis>
-        <xyz>0 0 -1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -297,7 +297,7 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-        <use_parent_model_frame>0</use_parent_model_frame>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
 
@@ -357,7 +357,7 @@
       <parent>base_link</parent>
       <pose>0 0 0 0 0 0</pose>
       <axis>
-        <xyz>0 0 -1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -366,7 +366,7 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-        <use_parent_model_frame>0</use_parent_model_frame>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
 
@@ -426,7 +426,7 @@
       <parent>base_link</parent>
       <pose>0 0 0 0 0 0</pose>
       <axis>
-        <xyz>0 0 -1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -435,7 +435,7 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-        <use_parent_model_frame>0</use_parent_model_frame>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
 
@@ -495,7 +495,7 @@
       <parent>base_link</parent>
       <pose>0 0 0 0 0 0</pose>
       <axis>
-        <xyz>0 0 -1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -504,7 +504,7 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-        <use_parent_model_frame>0</use_parent_model_frame>
+        <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
     </joint>
 
@@ -527,8 +527,8 @@
       <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>4</motorNumber>
-      <rotorDragCoefficient>1.4</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
+      <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/4</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     </plugin>
@@ -545,8 +545,8 @@
       <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>5</motorNumber>
-      <rotorDragCoefficient>1.4</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
+      <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/5</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     </plugin>
@@ -563,8 +563,8 @@
       <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>2</motorNumber>
-      <rotorDragCoefficient>1.4</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
+      <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/2</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     </plugin>
@@ -581,8 +581,8 @@
       <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>3</motorNumber>
-      <rotorDragCoefficient>1.4</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
+      <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/3</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     </plugin>
@@ -599,8 +599,8 @@
       <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>0</motorNumber>
-      <rotorDragCoefficient>1.4</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
+      <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/0</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     </plugin>
@@ -617,8 +617,8 @@
       <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>1</motorNumber>
-      <rotorDragCoefficient>1.4</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
+      <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/1</motorSpeedPubTopic>
       <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     </plugin>
@@ -665,7 +665,7 @@
       <sdk_udp_port>14540</sdk_udp_port>
       <hil_mode>0</hil_mode>
       <hil_state_level>0</hil_state_level>
-      <enable_lockstep>1</enable_lockstep>
+      <enable_lockstep>0</enable_lockstep>
       <use_tcp>1</use_tcp>
       <vehicle_is_tailsitter>0</vehicle_is_tailsitter>
       <send_vision_estimation>1</send_vision_estimation>

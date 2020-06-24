@@ -8,7 +8,7 @@
   <xacro:property name="mesh_scale" value="1 1 1"/>
   <xacro:property name="mesh_rotor" value="rotor_1.STL" />
   <xacro:property name="mesh_scale_prop" value="1 1 1"/>
-  <xacro:property name="mass" value="140" /> <!-- [kg] -->
+  <xacro:property name="mass" value="95" /> <!-- [kg] -->
   <xacro:property name="body_width" value="1.944514" /> <!-- [m] -->
   <xacro:property name="body_height" value="2.231896" /> <!-- [m] -->
   <xacro:property name="body_depth" value="0.886246" /> <!-- [m] -->
@@ -16,12 +16,12 @@
   <xacro:property name="mass_rotor" value="0.4177" /> <!-- [kg] -->
   <xacro:property name="length_rotor" value="0.02" /> <!-- [m] --> 
   <xacro:property name="radius_rotor" value="0.406" /> <!-- [m] -->
-  <xacro:property name="motor_constant" value="12.16582069e-04" /> <!-- [kg.m/s^2] -->
-  <xacro:property name="moment_constant" value="0.05105" /> <!-- [m] -->
+  <xacro:property name="motor_constant" value="12.010474e-04" /> <!-- [kg.m/s^2] -->
+  <xacro:property name="moment_constant" value="0.06" /> <!-- [m] -->
   <xacro:property name="time_constant_up" value="0.0125" /> <!-- [s] -->
   <xacro:property name="time_constant_down" value="0.025" /> <!-- [s] -->
-  <xacro:property name="max_rot_velocity" value="485" /> <!-- [rad/s] -->
-  <xacro:property name="rotor_drag_coefficient" value="0.08531" />
+  <xacro:property name="max_rot_velocity" value="470" /> <!-- [rad/s] -->
+  <xacro:property name="rotor_drag_coefficient" value="1.4" />
   <xacro:property name="rolling_moment_coefficient" value="0.000001" />
   <xacro:property name="color" value="$(arg visual_material)" />
   <xacro:property name="color_blue" value="BlueTransparent" />

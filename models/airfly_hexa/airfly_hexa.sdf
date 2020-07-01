@@ -19,7 +19,7 @@
         <pose>0 0 -0.175 0 0 0</pose> <!-- The z Axis has an offset to create a centered box for collisions https://answers.gazebosim.org//question/17457/robot-slips-after-upgrade-to-kinetic/ -->
         <geometry>
           <box>
-            <size>1.944514 2.231896 0.886246</size> 
+            <size>1.944514 2.23189 0.886246</size> 
           </box>
         </geometry>
         <surface>

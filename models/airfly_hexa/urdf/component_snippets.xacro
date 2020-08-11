@@ -114,6 +114,67 @@
     </gazebo>
   </xacro:macro>
 
+  <!-- Macro to add a LiDAR. -->
+  <xacro:macro name="lidar_macro"
+    params="link_name parent_link *origin">
+
+    <link name="${link_name}">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://airfly_hexa/meshes/Lidar_Lite_Laser_Optics.STL" scale="0.002 0.002 0.002" />
+        </geometry>
+        <material name="white" />
+      </visual>
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <inertia ixx="2.1733e-6" ixy="0" ixz="0" iyy="2.1733e-6" iyz="0" izz="1.8e-7" />
+      </inertial>
+    </link>
+    <joint name="${link_name}_joint" type="revolute">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent_link}" />
+      <child link="${link_name}" />
+      <axis xyz="0 0 1"/>
+      <limit lower="0" upper="0" effort="0" velocity="0"/>
+    </joint>
+    <gazebo reference="${link_name}">
+      <sensor name="laser" type="ray">
+        <pose>0 0 0 0 1.57079633 0</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>-0</min_angle>
+              <max_angle>0</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.06</min> <!-- do not change: use min_distance (below) for realistic behavior (smaller values cause issues) -->
+            <max>35</max>   <!-- do not change: use min_distance (below) for realistic behavior (bigger values cause issues) -->
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.02</stddev>
+          </noise>
+        </ray>
+        <plugin name="LaserPlugin" filename="libgazebo_lidar_plugin.so">
+          <robotNamespace></robotNamespace>
+          <min_distance>0.2</min_distance>
+          <max_distance>15.0</max_distance>
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>20</update_rate>
+        <visualize>true</visualize>
+      </sensor>
+      <material>Gazebo/White</material>
+    </gazebo>
+  </xacro:macro>
+
   <!-- Macro to add the gps_plugin. -->
   <xacro:macro name="gps_plugin_macro" params="namespace gps_noise">
     <gazebo>

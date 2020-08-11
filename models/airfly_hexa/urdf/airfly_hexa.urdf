@@ -11,6 +11,7 @@
   <!-- macros for gazebo plugins, sensors -->
   <!-- Macro to add logging to a bag file. -->
   <!-- Macro to add a camera. -->
+  <!-- Macro to add a LiDAR. -->
   <!-- Macro to add the gps_plugin. -->
   <!-- Macro to add the magnetometer_plugin. -->
   <!-- Macro to add Ground Truth plugin -->
@@ -52,7 +53,7 @@
   </joint>
   <link name="base_link_inertia">
     <inertial>
-      <mass value="140"/>
+      <mass value="95"/>
       <!-- [kg] -->
       <origin xyz="0.00248395293577031 0.000136495293976524 -0.174981555965809"/>
       <inertia ixx="2.93015030357653" ixy="2.67282084525685e-05" ixz="0.0449250956057515" iyy="2.98862504201484" iyz="6.44540809146554e-05" izz="4.78028912562783"/>
@@ -76,7 +77,7 @@
     <plugin filename="libgazebo_multirotor_base_plugin.so" name="rosbag">
       <robotNamespace></robotNamespace>
       <linkName>base_link</linkName>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
     </plugin>
   </gazebo>
   <gazebo reference="base_link">
@@ -101,10 +102,10 @@
       </surface>
     </collision>
   </gazebo>
-  <!-- Instantiate rotor 4 -->
+  <!-- Instantiate rotor 4 rpy="0.167 -0.005845 2.6538" -->
   <joint name="rotor_4_joint" type="continuous">
     <origin rpy="0.167 -0.005845 2.6538" xyz="0.85004 -0.42999 0.25919"/>
-    <axis xyz="0 0 -1"/>
+    <axis xyz="0.082997 0.144137 0.986071"/>
     <parent link="base_link"/>
     <child link="rotor_4"/>
   </joint>
@@ -134,15 +135,15 @@
       <turningDirection>ccw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
-      <maxRotVelocity>485</maxRotVelocity>
-      <motorConstant>0.001216582069</motorConstant>
-      <momentConstant>0.05105</momentConstant>
+      <maxRotVelocity>470</maxRotVelocity>
+      <motorConstant>0.0012010474</motorConstant>
+      <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>4</motorNumber>
-      <rotorDragCoefficient>0.08531</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
+      <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/4</motorSpeedPubTopic>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
       <!--
         <gazebo_joint_control_pid>
           <p>0.1</p>
@@ -159,10 +160,10 @@
   <gazebo reference="rotor_4">
     <material>Gazebo/OrangeTransparent</material>
   </gazebo>
-  <!-- Instantiate rotor 5 -->
+  <!-- Instantiate rotor 5 rpy="-0.24255 0.13775 -0.01577" -->
   <joint name="rotor_5_joint" type="continuous">
     <origin rpy="-0.24255 0.13775 -0.01577" xyz="-0.78182 0.54846 0.25157"/>
-    <axis xyz="0 0 -1"/>
+    <axis xyz="-0.137066 -0.238047 0.961533"/>
     <parent link="base_link"/>
     <child link="rotor_5"/>
   </joint>
@@ -192,15 +193,15 @@
       <turningDirection>cw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
-      <maxRotVelocity>485</maxRotVelocity>
-      <motorConstant>0.001216582069</motorConstant>
-      <momentConstant>0.05105</momentConstant>
+      <maxRotVelocity>470</maxRotVelocity>
+      <motorConstant>0.0012010474</motorConstant>
+      <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>5</motorNumber>
-      <rotorDragCoefficient>0.08531</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
+      <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/5</motorSpeedPubTopic>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
       <!--
         <gazebo_joint_control_pid>
           <p>0.1</p>
@@ -217,10 +218,10 @@
   <gazebo reference="rotor_5">
     <material>Gazebo/BlueTransparent</material>
   </gazebo>
-  <!-- Instantiate rotor 2 -->
+  <!-- Instantiate rotor 2 rpy="0.24252 0.13781 0.017864" -->
   <joint name="rotor_2_joint" type="continuous">
     <origin rpy="0.24252 0.13781 0.017864" xyz="0.8659 0.40285 0.25157"/>
-    <axis xyz="0 0 -1"/>
+    <axis xyz="-0.137623 0.237729 0.961533"/>
     <parent link="base_link"/>
     <child link="rotor_2"/>
   </joint>
@@ -250,15 +251,15 @@
       <turningDirection>cw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
-      <maxRotVelocity>485</maxRotVelocity>
-      <motorConstant>0.001216582069</motorConstant>
-      <momentConstant>0.05105</momentConstant>
+      <maxRotVelocity>470</maxRotVelocity>
+      <motorConstant>0.0012010474</motorConstant>
+      <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>2</motorNumber>
-      <rotorDragCoefficient>0.08531</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
+      <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/2</motorSpeedPubTopic>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
       <!--
         <gazebo_joint_control_pid>
           <p>0.1</p>
@@ -275,10 +276,10 @@
   <gazebo reference="rotor_2">
     <material>Gazebo/BlueTransparent</material>
   </gazebo>
-  <!-- Instantiate rotor 3 -->
+  <!-- Instantiate rotor 3 rpy="0.14504 0.083268 0.0071482" -->
   <joint name="rotor_3_joint" type="continuous">
     <origin rpy="0.14504 0.083268 0.0071482" xyz="-0.7974 -0.52116 0.25919"/>
-    <axis xyz="0 0 -1"/>
+    <axis xyz="-0.08333 0.14394 0.986072"/>
     <parent link="base_link"/>
     <child link="rotor_3"/>
   </joint>
@@ -308,15 +309,15 @@
       <turningDirection>ccw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
-      <maxRotVelocity>485</maxRotVelocity>
-      <motorConstant>0.001216582069</motorConstant>
-      <momentConstant>0.05105</momentConstant>
+      <maxRotVelocity>470</maxRotVelocity>
+      <motorConstant>0.0012010474</motorConstant>
+      <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>3</motorNumber>
-      <rotorDragCoefficient>0.08531</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
+      <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/3</motorSpeedPubTopic>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
       <!--
         <gazebo_joint_control_pid>
           <p>0.1</p>
@@ -333,10 +334,10 @@
   <gazebo reference="rotor_3">
     <material>Gazebo/OrangeTransparent</material>
   </gazebo>
-  <!-- Instantiate rotor 0 -->
+  <!-- Instantiate rotor 0 rpy="-0.0029981 0.27825 3.1318" -->
   <joint name="rotor_0_joint" type="continuous">
     <origin rpy="-0.0029981 0.27825 3.1318" xyz="-0.084071 -0.95131 0.25157"/>
-    <axis xyz="0 0 -1"/>
+    <axis xyz="-0.274688 -0.000308 0.961533"/>
     <parent link="base_link"/>
     <child link="rotor_0"/>
   </joint>
@@ -366,15 +367,15 @@
       <turningDirection>cw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
-      <maxRotVelocity>485</maxRotVelocity>
-      <motorConstant>0.001216582069</motorConstant>
-      <momentConstant>0.05105</momentConstant>
+      <maxRotVelocity>470</maxRotVelocity>
+      <motorConstant>0.0012010474</motorConstant>
+      <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>0</motorNumber>
-      <rotorDragCoefficient>0.08531</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
+      <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/0</motorSpeedPubTopic>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
       <!--
         <gazebo_joint_control_pid>
           <p>0.1</p>
@@ -391,10 +392,10 @@
   <gazebo reference="rotor_0">
     <material>Gazebo/BlueTransparent</material>
   </gazebo>
-  <!-- Instantiate rotor 1 -->
+  <!-- Instantiate rotor 1 rpy="-2.5657e-05 -0.1671 0.0013258" -->
   <joint name="rotor_1_joint" type="continuous">
     <origin rpy="-2.5657e-05 -0.1671 0.0013258" xyz="-0.052635 0.95115 0.25919"/>
-    <axis xyz="0 0 -1"/>
+    <axis xyz="0.166323 0.000195 0.986071"/>
     <parent link="base_link"/>
     <child link="rotor_1"/>
   </joint>
@@ -424,15 +425,15 @@
       <turningDirection>ccw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
-      <maxRotVelocity>485</maxRotVelocity>
-      <motorConstant>0.001216582069</motorConstant>
-      <momentConstant>0.05105</momentConstant>
+      <maxRotVelocity>470</maxRotVelocity>
+      <motorConstant>0.0012010474</motorConstant>
+      <momentConstant>0.06</momentConstant>
       <commandSubTopic>/gazebo/command/motor_speed</commandSubTopic>
       <motorNumber>1</motorNumber>
-      <rotorDragCoefficient>0.08531</rotorDragCoefficient>
-      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
+      <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/1</motorSpeedPubTopic>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
       <!--
         <gazebo_joint_control_pid>
           <p>0.1</p>
@@ -499,14 +500,14 @@
       <vehicle_is_tailsitter>false</vehicle_is_tailsitter>
       <send_vision_estimation>true</send_vision_estimation>
       <send_odometry>false</send_odometry>
-      <enable_lockstep>true</enable_lockstep>
+      <enable_lockstep>false</enable_lockstep>
       <use_tcp>true</use_tcp>
       <motorSpeedCommandPubTopic>/gazebo/command/motor_speed</motorSpeedCommandPubTopic>
       <control_channels>
         <channel name="rotor1">
           <input_index>0</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>485</input_scaling>
+          <input_scaling>470</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>100</zero_position_armed>
           <joint_control_type>velocity</joint_control_type>
@@ -514,7 +515,7 @@
         <channel name="rotor2">
           <input_index>1</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>485</input_scaling>
+          <input_scaling>470</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>100</zero_position_armed>
           <joint_control_type>velocity</joint_control_type>
@@ -522,7 +523,7 @@
         <channel name="rotor3">
           <input_index>2</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>485</input_scaling>
+          <input_scaling>470</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>100</zero_position_armed>
           <joint_control_type>velocity</joint_control_type>
@@ -530,7 +531,7 @@
         <channel name="rotor4">
           <input_index>3</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>485</input_scaling>
+          <input_scaling>470</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>100</zero_position_armed>
           <joint_control_type>velocity</joint_control_type>
@@ -538,7 +539,7 @@
         <channel name="rotor4">
           <input_index>4</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>485</input_scaling>
+          <input_scaling>470</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>100</zero_position_armed>
           <joint_control_type>velocity</joint_control_type>
@@ -546,7 +547,7 @@
         <channel name="rotor5">
           <input_index>5</input_index>
           <input_offset>0</input_offset>
-          <input_scaling>485</input_scaling>
+          <input_scaling>470</input_scaling>
           <zero_position_disarmed>0</zero_position_disarmed>
           <zero_position_armed>100</zero_position_armed>
           <joint_control_type>velocity</joint_control_type>
@@ -599,13 +600,72 @@
       <!-- Accelerometer turn on bias standard deviation [m/s^2] -->
     </plugin>
   </gazebo>
+  <!-- Enable LiDAR -->
+  <!-- Instantiate LiDAR plugin -->
+  <link name="lidar">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://airfly_hexa/meshes/Lidar_Lite_Laser_Optics.STL" scale="0.002 0.002 0.002"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <inertial>
+      <mass value="0.01"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="2.1733e-6" ixy="0" ixz="0" iyy="2.1733e-6" iyz="0" izz="1.8e-7"/>
+    </inertial>
+  </link>
+  <joint name="lidar_joint" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 -0.3625"/>
+    <parent link="base_link"/>
+    <child link="lidar"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="0" lower="0" upper="0" velocity="0"/>
+  </joint>
+  <gazebo reference="lidar">
+    <sensor name="laser" type="ray">
+      <pose>0 0 0 0 1.57079633 0</pose>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>1</samples>
+            <resolution>1</resolution>
+            <min_angle>-0</min_angle>
+            <max_angle>0</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.06</min>
+          <!-- do not change: use min_distance (below) for realistic behavior (smaller values cause issues) -->
+          <max>35</max>
+          <!-- do not change: use min_distance (below) for realistic behavior (bigger values cause issues) -->
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.02</stddev>
+        </noise>
+      </ray>
+      <plugin filename="libgazebo_lidar_plugin.so" name="LaserPlugin">
+        <robotNamespace/>
+        <min_distance>0.2</min_distance>
+        <max_distance>15.0</max_distance>
+      </plugin>
+      <always_on>1</always_on>
+      <update_rate>20</update_rate>
+      <visualize>true</visualize>
+    </sensor>
+    <material>Gazebo/White</material>
+  </gazebo>
   <!-- Enable GroundTruth -->
   <!-- Instantiate GroundTruth plugin. -->
   <gazebo>
     <plugin filename="libgazebo_ros_p3d.so" name="ground_truth">
       <frameName>map</frameName>
       <bodyName>base_link</bodyName>
-      <topicName>/odom</topicName>
+      <topicName>/ground_truth</topicName>
       <updateRate>30</updateRate>
       <xyzOffset>0 0 -0.1975016</xyzOffset>
       <rpyOffset>0 0 0</rpyOffset>

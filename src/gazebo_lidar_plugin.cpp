@@ -115,6 +115,11 @@ void LidarPlugin::Load(sensors::SensorPtr _parent, sdf::ElementPtr _sdf)
       " using lidar topic \"" << parentSensorModelName << "\"\n";
   }
 
+  // lidar_topic_ = "lidar";
+
+  // std::cout << lidar_topic_ << endl;
+  // std::cout << "SDAJKSHDJASKHDJASHDJASDJASHDHAJSHDJASHDJAHSDHASDHASHDHASJDHAJKSDHJA" << endl;
+
   // Calculate parent sensor rotation WRT `base_link`
   const ignition::math::Quaterniond q_ls = parentSensor_->Pose().Rot();
 
@@ -126,6 +131,8 @@ void LidarPlugin::Load(sensors::SensorPtr _parent, sdf::ElementPtr _sdf)
 
   // start lidar topic publishing
   lidar_pub_ = node_handle_->Advertise<sensor_msgs::msgs::Range>("~/" + names_splitted[0] + "/link/" + lidar_topic_, 10);
+
+  // std::cout << "~/" + names_splitted[0] + "/link/" + lidar_topic_ << endl;
 }
 
 /////////////////////////////////////////////////
@@ -143,6 +150,8 @@ void LidarPlugin::OnNewLaserScans()
   lidar_message_.set_max_distance(max_distance_);
 
   double current_distance = parentSensor_->Range(0);
+
+  // std::cout << current_distance << endl;
 
   // set distance to min/max if actual value is smaller/bigger
   if (current_distance < min_distance_ || std::isinf(current_distance)) {

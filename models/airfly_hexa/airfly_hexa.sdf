@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <sdf version='1.5'>
   <model name='airfly_hexa'>
     <!-- Main body frame Airfly hexacopter  -->
@@ -508,6 +509,86 @@
       </axis>
     </joint>
 
+    <!--LiDAR -0.57 -->
+    <include>
+      <uri>model://lidar</uri>
+      <pose>0 0 -0.375 0 0 0</pose>
+    </include> 
+
+    <!--LiDAR 
+    <link name="lidar">
+      <pose>0 0 -0.3625 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>2.1733e-6</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>2.1733e-6</iyy>
+          <iyz>0</iyz>
+          <izz>1.8e-7</izz>
+        </inertia>
+      </inertial>
+      <visual name="lidar_visual">
+      	<pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.002 0.002 0.002</scale>
+            <uri>model://airfly_hexa/meshes/Lidar_Lite_Laser_Optics.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/White</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <sensor name="laser" type="lidar">
+        <pose>0 0 -0.195 0 1.57079633 0</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>-0</min_angle>
+              <max_angle>0</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.06</min>
+            <max>35</max>  
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.02</stddev>
+          </noise>
+        </ray>
+
+        <plugin name="LaserPlugin" filename="libgazebo_lidar_plugin.so">
+          <robotNamespace></robotNamespace>
+          <min_distance>0.08</min_distance>
+          <max_distance>30.0</max_distance>
+        </plugin>
+
+        <always_on>1</always_on>
+        <update_rate>20</update_rate>
+        <visualize>true</visualize>
+      </sensor>
+    </link>  -->
+
+    <!--LiDAR Joint-->
+    <joint name="lidar_joint" type="fixed">
+      <child>lidar::link</child>
+      <parent>base_link</parent>
+      <axis>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+	  </joint>
+
     <!-- Rosbag Plugin-->
     <plugin name='rosbag' filename='libgazebo_multirotor_base_plugin.so'>
       <robotNamespace/>
@@ -530,7 +611,7 @@
       <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
       <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/4</motorSpeedPubTopic>
-      <rotorVelocitySlowdownSim>4</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
     </plugin>
 
     <plugin name='back_left_motor_model' filename='libgazebo_motor_model.so'>
@@ -548,7 +629,7 @@
       <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
       <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/5</motorSpeedPubTopic>
-      <rotorVelocitySlowdownSim>4</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
     </plugin>
 
     <plugin name='front_left_motor_model' filename='libgazebo_motor_model.so'>
@@ -566,7 +647,7 @@
       <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
       <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/2</motorSpeedPubTopic>
-      <rotorVelocitySlowdownSim>4</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
     </plugin>
 
     <plugin name='back_right_motor_model' filename='libgazebo_motor_model.so'>
@@ -584,7 +665,7 @@
       <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
       <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/3</motorSpeedPubTopic>
-      <rotorVelocitySlowdownSim>4</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
     </plugin>
 
     <plugin name='back_left_motor_model' filename='libgazebo_motor_model.so'>
@@ -602,7 +683,7 @@
       <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
       <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/0</motorSpeedPubTopic>
-      <rotorVelocitySlowdownSim>4</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
     </plugin>
 
     <plugin name='front_left_motor_model' filename='libgazebo_motor_model.so'>
@@ -620,7 +701,7 @@
       <rotorDragCoefficient>0.002557889</rotorDragCoefficient>
       <rollingMomentCoefficient>3.172e-06</rollingMomentCoefficient>
       <motorSpeedPubTopic>/motor_speed/1</motorSpeedPubTopic>
-      <rotorVelocitySlowdownSim>4</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>3</rotorVelocitySlowdownSim>
     </plugin>
 
     <!-- GPS Plugin-->
@@ -749,7 +830,7 @@
     <plugin name="ground_truth" filename="libgazebo_ros_p3d.so">
       <frameName>map</frameName>
       <bodyName>base_link</bodyName>
-      <topicName>/odom</topicName>
+      <topicName>/ground_truth</topicName>
       <updateRate>30.0</updateRate>
       <xyzOffset>0 0 -0.1975016</xyzOffset>
       <rpyOffset>0 0 0</rpyOffset>

@@ -130,10 +130,10 @@
   <xacro:if value="$(arg enable_lidar)">
     <!-- Instantiate LiDAR plugin -->
     <xacro:lidar_macro
-      link_name="lidar"
+      link_name="lidar_lite::link"
       parent_link="base_link"
       >
-      <origin xyz="0 0 -0.3625" rpy="0 0 0" />
+      <origin xyz="0 0 -0.36" rpy="0 0 0" />
     </xacro:lidar_macro>
   </xacro:if>
 

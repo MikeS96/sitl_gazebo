@@ -602,7 +602,7 @@
   </gazebo>
   <!-- Enable LiDAR -->
   <!-- Instantiate LiDAR plugin -->
-  <link name="lidar">
+  <link name="lidar_lite::link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
@@ -617,15 +617,15 @@
     </inertial>
   </link>
   <joint name="lidar_joint" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0 -0.3625"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.36"/>
     <parent link="base_link"/>
-    <child link="lidar"/>
+    <child link="lidar_lite::link"/>
     <axis xyz="0 0 1"/>
     <limit effort="0" lower="0" upper="0" velocity="0"/>
   </joint>
-  <gazebo reference="lidar">
+  <gazebo reference="lidar_lite::link">
     <sensor name="laser" type="ray">
-      <pose>0 0 0 0 1.57079633 0</pose>
+      <pose>0 0 -0.21 0 1.57079633 0</pose>
       <ray>
         <scan>
           <horizontal>
@@ -648,10 +648,10 @@
           <stddev>0.02</stddev>
         </noise>
       </ray>
-      <plugin filename="libgazebo_lidar_plugin.so" name="LaserPlugin">
+      <plugin filename="libgazebo_lidar_lite_plugin.so" name="LaserLitePlugin">
         <robotNamespace/>
-        <min_distance>0.2</min_distance>
-        <max_distance>15.0</max_distance>
+        <min_distance>0.08</min_distance>
+        <max_distance>30.0</max_distance>
       </plugin>
       <always_on>1</always_on>
       <update_rate>20</update_rate>

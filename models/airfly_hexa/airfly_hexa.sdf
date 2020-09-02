@@ -509,9 +509,9 @@
       </axis>
     </joint>
 
-    <!--LiDAR 
-    <link name="lidar_link">
-      <pose>0 0 -0.3625 0 0 0</pose>
+    <!--LiDAR -->
+    <link name="lidar_lite::link">
+      <pose>0 0 -0.36 0 0 0</pose>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
         <mass>0.01</mass>
@@ -524,8 +524,7 @@
           <izz>1.8e-7</izz>
         </inertia>
       </inertial>
-
-      <visual name="lidar_visual">
+      <visual name="lidar_lite_visual">
       	<pose>0 0 0 0 0 0</pose>
         <geometry>
           <mesh>
@@ -540,9 +539,8 @@
           </script>
         </material>
       </visual>
-
       <sensor name="laser" type="ray">
-        <pose>0 0 -0.0 0 1.57079633 0</pose>
+        <pose>0 0 -0.21 0 1.57079633 0</pose>
         <ray>
           <scan>
             <horizontal>
@@ -563,27 +561,18 @@
             <stddev>0.02</stddev>
           </noise>
         </ray>
-
-        <plugin name="LaserPlugin" filename="libgazebo_lidar_plugin.so">
+        <plugin name="LaserLitePlugin" filename="libgazebo_lidar_lite_plugin.so">
           <robotNamespace></robotNamespace>
           <min_distance>0.08</min_distance>
           <max_distance>30.0</max_distance>
         </plugin>
-
         <always_on>1</always_on>
         <update_rate>20</update_rate>
         <visualize>true</visualize>
       </sensor>
     </link>  
-    -->
 
-    <!--LiDAR -0.57 -->
-    <include>
-      <uri>model://lidar_lite</uri>
-      <pose>0 0 -0.375 0 0 0</pose>
-    </include>
-
-    <!--LiDAR Joint-->
+    <!--LiDAR Joint  -->
     <joint name="lidar_joint" type="fixed">
       <child>lidar_lite::link</child>
       <parent>base_link</parent>
@@ -591,6 +580,22 @@
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
 	  </joint>
+    
+
+    <!--LiDAR 
+    <include>
+      <uri>model://lidar_lite</uri>
+      <pose>0 0 -0.375 0 0 0</pose>
+    </include> --> 
+
+    <!--LiDAR Joint  
+    <joint name="lidar_joint" type="fixed">
+      <child>lidar_lite::link</child>
+      <parent>base_link</parent>
+      <axis>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+	  </joint> -->
 
     <!-- Rosbag Plugin-->
     <plugin name='rosbag' filename='libgazebo_multirotor_base_plugin.so'>
